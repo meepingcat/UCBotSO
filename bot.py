@@ -63,9 +63,9 @@ async def restart(interaction : discord.Interaction):
 async def ping(interaction: discord.Interaction):
     await interaction.response.send_message("Pong!")
 
-# @tree.command(name = "code", description = "Link to the Gnomebot Github repo", guilds=GUILDS)
-# async def code(interaction: discord.Interaction):
-#     await interaction.response.send_message("https://github.com/Noam-Elisha/GnomeBot")
+@tree.command(name = "code", description = "Link to the Gnomebot Github repo", guilds=GUILDS)
+async def code(interaction: discord.Interaction):
+    await interaction.response.send_message("https://github.com/Noam-Elisha/UCBotSO")
 
 @tree.command(name="ip", description="Get the ip for the Minecraft server", guilds=GUILDS)
 async def ip(interaction: discord.Interaction):
