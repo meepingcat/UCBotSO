@@ -67,6 +67,10 @@ async def ping(interaction: discord.Interaction):
 # async def code(interaction: discord.Interaction):
 #     await interaction.response.send_message("https://github.com/Noam-Elisha/GnomeBot")
 
+@tree.command(name="ip", description="Get the ip for the Minecraft server", guilds=GUILDS)
+async def ip(interaction: discord.Interaction):
+    await interaction.response.send_message(TOKENS["server_ip"])
+
 @tree.command(name="serveron", description = "Turn on the Minecraft server", guilds=GUILDS)
 async def serveron(interaction: discord.Interaction):
     ec2_client.start_instances(
@@ -74,7 +78,7 @@ async def serveron(interaction: discord.Interaction):
             instance_id,
         ],
     )
-    await interaction.response.send_message("Turning on the server. This will take a moment.")
+    await interaction.response.send_message("Turning on the server. This will take a moment.\nPlease remember to turn it off using /serveroff when you're done.")
 
 @tree.command(name="serveroff", description = "Turn off the Minecraft server", guilds=GUILDS)
 async def serveroff(interaction: discord.Interaction):
