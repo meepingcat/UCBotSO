@@ -97,11 +97,9 @@ async def serverstatus(interaction: discord.Interaction):
     interaction.response.defer()
     try:
         server = mcstatus.JavaServer.lookup(TOKENS["server_ip"])
+        status = server.status()
     except:
-        await debug("printing traceback")
-        await debug(traceback.format_exc(), code=True)
-    status = server.status()
-    await debug(str(status is None))
+        await interaction.followup.send("The server is offline.")
     await interaction.followup.send(f"The server has {status.players.online} player(s) online")
 
 async def debug(message, code = False):
