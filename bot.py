@@ -92,7 +92,7 @@ async def serveroff(interaction: discord.Interaction):
     )
     await interaction.response.send_message("Thank you for turning off the server")
 
-@tree.command(name="serverstatus", description = "Show how many players are currently on the server.", guilds=GUILDS)
+@tree.command(name="serverstatus", description = "Show how many players are currently on the server", guilds=GUILDS)
 async def serverstatus(interaction: discord.Interaction):
     await interaction.response.defer()
     try:
