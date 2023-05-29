@@ -21,7 +21,6 @@ aws_secret_access_key = TOKENS["AWS_secret_access_key"]
 aws_region = TOKENS["AWS_region"]
 instance_id = TOKENS["EC2_instance_id"]
 
-ec2_client = boto3.client("ec2", region_name="us-east-2", aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
@@ -73,6 +72,7 @@ async def ip(interaction: discord.Interaction):
 
 @tree.command(name="serveron", description = "Turn on the Minecraft server", guilds=GUILDS)
 async def serveron(interaction: discord.Interaction):
+    ec2_client = boto3.client("ec2", region_name="us-east-2", aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
     ec2_client.start_instances(
         InstanceIds=[
             instance_id,
@@ -82,6 +82,7 @@ async def serveron(interaction: discord.Interaction):
 
 @tree.command(name="serveroff", description = "Turn off the Minecraft server", guilds=GUILDS)
 async def serveroff(interaction: discord.Interaction):
+    ec2_client = boto3.client("ec2", region_name="us-east-2", aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
     ec2_client.stop_instances(
         InstanceIds=[
             instance_id,
