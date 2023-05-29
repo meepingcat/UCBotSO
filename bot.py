@@ -7,6 +7,8 @@ import traceback
 import json
 import os
 import time
+import mcstatus
+
 
 with open("tokens.json", "r") as f:
     TOKENS = json.load(f)
@@ -89,6 +91,14 @@ async def serveroff(interaction: discord.Interaction):
         ],
     )
     await interaction.response.send_message("Thank you for turning off the server.")
+
+@tree.command(name="serverstatus", description = "Turn off the Minecraft server", guilds=GUILDS)
+async def serverstatus(interaction: discord.Interaction):
+    try:
+        server = mcstatus.JavaServer.lookup(TOKENS["server_ip"])
+    except:
+        await debug(traceback.format_exc(), code=True)
+    response = mcstatus.ping()
 
 async def debug(message, code = False):
     for cid in DEBUG_CHANNELS:
