@@ -94,11 +94,14 @@ async def serveroff(interaction: discord.Interaction):
 
 @tree.command(name="serverstatus", description = "Turn off the Minecraft server", guilds=GUILDS)
 async def serverstatus(interaction: discord.Interaction):
+    interaction.response.defer()
     try:
         server = mcstatus.JavaServer.lookup(TOKENS["server_ip"])
     except:
+        await debug("printing traceback")
         await debug(traceback.format_exc(), code=True)
-    response = mcstatus.ping()
+    status = server.status()
+    await interaction.followup.send(f"The server has {status.players.online} player(s) online")
 
 async def debug(message, code = False):
     for cid in DEBUG_CHANNELS:
