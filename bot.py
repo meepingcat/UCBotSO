@@ -80,7 +80,7 @@ async def serveron(interaction: discord.Interaction):
             instance_id,
         ],
     )
-    await interaction.response.send_message("Turning on the server. This will take a moment.\nPlease remember to turn it off using /serveroff when you're done.")
+    await interaction.response.send_message("Turning on the server. This will take a moment.\nPlease remember to turn it off using /serveroff when you're done")
 
 @tree.command(name="serveroff", description = "Turn off the Minecraft server", guilds=GUILDS)
 async def serveroff(interaction: discord.Interaction):
@@ -90,9 +90,9 @@ async def serveroff(interaction: discord.Interaction):
             instance_id,
         ],
     )
-    await interaction.response.send_message("Thank you for turning off the server.")
+    await interaction.response.send_message("Thank you for turning off the server")
 
-@tree.command(name="serverstatus", description = "Turn off the Minecraft server", guilds=GUILDS)
+@tree.command(name="serverstatus", description = "Show how many players are currently on the server.", guilds=GUILDS)
 async def serverstatus(interaction: discord.Interaction):
     await interaction.response.defer()
     try:
