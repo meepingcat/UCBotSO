@@ -94,7 +94,7 @@ async def serveroff(interaction: discord.Interaction):
 
 @tree.command(name="serverstatus", description = "Turn off the Minecraft server", guilds=GUILDS)
 async def serverstatus(interaction: discord.Interaction):
-    interaction.response.defer()
+    await interaction.response.defer()
     try:
         server = mcstatus.JavaServer.lookup(TOKENS["server_ip"])
         status = server.status()
