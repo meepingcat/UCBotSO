@@ -100,6 +100,7 @@ async def serverstatus(interaction: discord.Interaction):
         status = server.status()
     except:
         await interaction.followup.send("The server is offline.")
+        return
     await interaction.followup.send(f"The server has {status.players.online} player(s) online")
 
 async def debug(message, code = False):
