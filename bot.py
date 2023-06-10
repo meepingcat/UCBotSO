@@ -8,7 +8,9 @@ import boto3
 import discord
 import mcstatus
 from discord import app_commands
-from flask import Flask
+from flask import Flask, request
+
+app = Flask(__name__)
 
 with open("tokens.json", "r") as f:
     TOKENS = json.load(f)
@@ -170,5 +172,14 @@ async def on_command_error(context, exception):
     await debug("on_error")
     await debug("```{}```".format(traceback.format_exc()))
 
+# https://www.ocf.berkeley.edu/docs/services/web/flask/
+@app.route("/email", methods=["POST"])
+async def send_email_to_discord():
+    channel = client.get_channel(1100661212246724618)
+    req = request.data
+    await channel.send(req)
+
+if __name__ == '__main__':
+    app.run() # unsure if this blocks, preventing discord client from running?
 
 client.run(TOKEN)
