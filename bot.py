@@ -1,4 +1,5 @@
 import json
+import multiprocessing as mp
 import os
 import sys
 import time
@@ -172,6 +173,7 @@ async def on_command_error(context, exception):
     await debug("on_error")
     await debug("```{}```".format(traceback.format_exc()))
 
+
 # https://www.ocf.berkeley.edu/docs/services/web/flask/
 @app.route("/email", methods=["POST"])
 async def send_email_to_discord():
@@ -179,7 +181,13 @@ async def send_email_to_discord():
     req = request.data
     await channel.send(req)
 
-if __name__ == '__main__':
-    app.run() # unsure if this blocks, preventing discord client from running?
 
-client.run(TOKEN)
+def flask_run():
+    app.run()  # unsure if this blocks, preventing discord client from running?
+
+
+if __name__ == "__main__":
+    flask_process = mp.Process(target=flask_run)
+    client.run(TOKEN)
+
+    flask_process.join()
