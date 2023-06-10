@@ -1,0 +1,3 @@
+[submodule "UCBotSOCDK"]
+	path = UCBotSOCDK
+	url = https://github.com/potatoboiler/UCBotSOCDK.git
