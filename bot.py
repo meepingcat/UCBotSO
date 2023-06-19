@@ -88,7 +88,7 @@ async def code(interaction: discord.Interaction):
     name="ip", description="Get the ip for the Minecraft server", guilds=GUILDS
 )
 async def ip(interaction: discord.Interaction):
-    await interaction.response.send_message(TOKENS["server_ip"])
+    await interaction.response.send_message("18.189.160.118:25565")
 
 
 @tree.command(
